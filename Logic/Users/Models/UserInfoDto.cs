@@ -2,7 +2,7 @@
 
 namespace IdentityServerLogic.Users.Models;
 
-public class UserInfo
+public record UserInfo
 {
     public required string Name { get; init; }
     

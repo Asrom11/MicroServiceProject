@@ -22,15 +22,15 @@ public class UserController: ControllerBase
     [ProducesResponseType(typeof(CreateUserRepsonse), 200)]
     public async Task<IActionResult> RegisterAsync([FromBody] CreateUserRequests dto)
     {
-        var res = await _userLogicManager.RegisterAsync(new UserLogic()
-        {
-            Name = dto.Name,
-            Email = dto.Email,
-            Pasword = dto.Pasword,
-            Role = dto.Role
-        });
+          var res = await _userLogicManager.RegisterAsync(new UserLogic()
+          {
+              Name = dto.Name,
+              Email = dto.Email,
+              Pasword = dto.Pasword,
+              Role = dto.Role
+          });
         
-        return Ok(new { Status = "Success" });
+        return res  ? Ok(new { Status = "Success" }) : StatusCode(500, "Failed, try again later");
     }
 
     [HttpPost("login")]
@@ -73,10 +73,10 @@ public class UserController: ControllerBase
     }
     
     
-    [HttpDelete("profile")]
+    [HttpDelete("delete")]
     public async Task<IActionResult> DeleteProfileAsync([FromQuery] Guid userId)
     {
         var res = await _userLogicManager.DeleteProfileAsync(userId);
-        return Ok(new { Status = "Success", Message = "Profile deleted successfully." });
+        return res is true ? Ok(new { Status = "Success", Message = "Profile deleted successfully." }) : StatusCode(500, "Failed, try again later");
     }
 }

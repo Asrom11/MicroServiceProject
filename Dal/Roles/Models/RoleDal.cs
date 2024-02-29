@@ -5,7 +5,7 @@ using Core.Dal.Base;
 namespace IdentityServerDal.Roles.Models;
 
 [Table("role")]
-public class RoleDal: BaseEntityDal<Guid>
+public record RoleDal: BaseEntityDal<Guid>
 {
     public required string Name { get; init; }
     

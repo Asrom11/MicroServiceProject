@@ -2,7 +2,7 @@
 
 namespace MicroServicesProject.Controllers.User.Requests;
 
-public class UserLoginRequest
+public record UserLoginRequest
 {
     [MaxLength(256)]
     [EmailAddress]

@@ -1,6 +1,6 @@
 ﻿namespace IdentityServerLogic.Users.Models;
 
-public class UserLogic
+public record UserLogic
 {
     public required string Name { get; init; }
     

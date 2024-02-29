@@ -1,6 +1,6 @@
 ﻿namespace IdentityServerLogic.Users.Models;
 
-public class UserLoginLogic
+public record UserLoginLogic
 {
     public required string Email { get; init; }
 

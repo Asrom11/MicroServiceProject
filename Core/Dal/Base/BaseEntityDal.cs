@@ -2,7 +2,7 @@
 
 namespace Core.Dal.Base;
 
-public class BaseEntityDal<T>
+public record BaseEntityDal<T>
 {
     [Key]
     public T Id { get; set; }

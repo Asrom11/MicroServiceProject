@@ -3,7 +3,7 @@ using IdentityServerLogic.Users.Models;
 
 namespace MicroServicesProject.Controllers.User.Requests;
 
-public class CreateUserRequests
+public record CreateUserRequests
 {
     [MaxLength(256)]
     public required string Name { get; init; }

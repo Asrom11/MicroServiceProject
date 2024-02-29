@@ -1,6 +1,6 @@
 ﻿namespace IdentityServerLogic.Users.Models;
 
-public class UserUpdateLogic
+public record UserUpdateLogic
 {
     public required Guid Id { get; init; }
     public required string Name { get; init; }

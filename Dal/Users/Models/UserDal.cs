@@ -6,7 +6,7 @@ namespace IdentityServerDal.Roles.Models;
 
 
 [Table("users")]
-public class UserDal: BaseEntityDal<Guid>
+public record UserDal: BaseEntityDal<Guid>
 {
     [Column("name")]
     public required string Name { get; set; }

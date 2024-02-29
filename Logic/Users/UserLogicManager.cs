@@ -45,6 +45,11 @@ public class UserLogicManager: IUserLogicManager
         };
 
         var createdResult = await _userRepository.CreateAsync(user);
+
+        if (createdResult == Guid.Empty)
+        {
+            return false;
+        }
         
         if (await _roleLogicManager.RoleExistsAsync(userLogic.Role.ToString()))
         {

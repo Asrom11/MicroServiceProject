@@ -2,7 +2,7 @@
 
 namespace IdentityServerDal.Roles.Models;
 
-public class RightsDal: BaseEntityDal<Guid>
+public record RightsDal: BaseEntityDal<Guid>
 {
     public string Name;
     

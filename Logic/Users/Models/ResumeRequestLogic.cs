@@ -2,7 +2,7 @@
 
 namespace IdentityServerLogic.Users.Models;
 
-public class ResumeRequestLogic
+public record ResumeRequestLogic
 {
     public required int Experience { get; init; }
     public required string Skills { get; init; }

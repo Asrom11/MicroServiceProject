@@ -1,6 +1,6 @@
 ﻿namespace MicroServicesProject.Controllers.User.Response;
 
-public class CreateUserRepsonse
+public record CreateUserRepsonse
 {
     
 }

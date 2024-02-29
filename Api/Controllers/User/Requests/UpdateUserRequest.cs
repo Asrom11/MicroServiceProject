@@ -2,7 +2,7 @@
 
 namespace MicroServicesProject.Controllers.User.Requests;
 
-public class UpdateUserRequest
+public record UpdateUserRequest
 {
     public required Guid Id;
     public required string Name;

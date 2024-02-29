@@ -2,7 +2,7 @@
 
 namespace MicroServicesProject.Controllers.User.Requests;
 
-public class ResumeRequest
+public record ResumeRequest
 {
     public required Guid UserID { get; set; }
     public required int Experience { get; init; }

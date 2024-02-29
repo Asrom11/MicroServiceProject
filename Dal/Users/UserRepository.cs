@@ -33,7 +33,7 @@ public class UserRepository: IUserRepository
         {
             Console.WriteLine(ex);
             transaction.Rollback();
-            throw;
+            return Guid.Empty;
         }
     }
     public async Task<UserDal> GetProfileAsyncByEmail(string email)
