@@ -141,7 +141,7 @@ internal class HttpRequestService : IHttpRequestService
             httpRequestMessage.Headers.Add(traceWriter.Name, traceWriter.GetValue());
         }
 
-        var res = await _httpConnectionService.SendRequestAsync(httpRequestMessage, null, default);
+        var res = await _httpConnectionService.SendRequestAsync(httpRequestMessage, client, connectionData.CancellationToken);
         return null;
     }
 
