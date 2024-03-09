@@ -1,6 +1,9 @@
 ﻿
+using System.ComponentModel.DataAnnotations.Schema;
 using Domain.Interfaces;
 using ExampleCore.Dal.Base;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Services.Interfaces;
 
 namespace Domain.Entities;
@@ -15,9 +18,14 @@ public record Vacancy: BaseEntityDal<Guid>
     
     public required VacancyStatus VacancyStatus { get; init; }
     
-    public VacancyApplication VacancyApplication { get; set; }
+    [NotMapped]
+    public CreatedVacancyUserInfo UserInfo { get; set; }
     
-    public VacancyFeedback VacancyFeedback { get; set; }
+    [JsonIgnore]
+    public VacancyApplication[] VacancyApplication { get; set; }
+    
+    [JsonIgnore]
+    public VacancyFeedback[] VacancyFeedback { get; set; }
     public async Task<Guid> SaveAsycn(IStandartStore<Vacancy> storeVacancy, IChekUser chekUser)
     {
         await chekUser.CheckUserExistAsync(EmployerId);

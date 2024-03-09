@@ -1,6 +1,7 @@
 ﻿using Domain.Interfaces;
 using ExampleCore.Dal.Base;
 using Medo;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastucture.Data;
 
@@ -48,5 +49,12 @@ public class BaseRepository<T>: IStandartStore<T>
         _applicationDbContext.Set<T>().Remove(entity);
 
         await _applicationDbContext.SaveChangesAsync();
+    }
+
+    public async Task<List<T>> GetAllAsync()
+    {
+        var res = await _applicationDbContext.Set<T>().ToListAsync();
+
+        return res;
     }
 }

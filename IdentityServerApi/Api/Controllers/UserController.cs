@@ -79,4 +79,24 @@ public class UserController: ControllerBase
         var res = await _userLogicManager.DeleteProfileAsync(userId);
         return res is true ? Ok(new { Status = "Success", Message = "Profile deleted successfully." }) : StatusCode(500, "Failed, try again later");
     }
+
+    [HttpPost("namelist")]
+    [ProducesResponseType(typeof(UserNameInfo),200)]
+    public async Task<IActionResult> GetUserNameListAsync([FromBody] UserNameListProfileApiRequest userNameListProfileApiRequest)
+    {
+        var res = await _userLogicManager.GetUserNameListAsync();
+        return Ok(res);
+    }
+
+    
+    [HttpPost("exist")]
+    [ProducesResponseType(typeof(UserExistProfileResponse),200)]
+    public async Task<IActionResult> CheckUserExistProfile([FromBody] UserExistProfileRequst userExistProfileRequst)
+    {
+        var res = await _userLogicManager.CheckUserExist(userExistProfileRequst.UserId);
+        return Ok(new UserExistProfileResponse()
+        {
+            UserId = res
+        });
+    }
 }

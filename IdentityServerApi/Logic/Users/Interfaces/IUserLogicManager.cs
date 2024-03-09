@@ -11,4 +11,8 @@ public interface IUserLogicManager
     Task<UserInfo> GetProfileAsync(Guid id);
     Task<UpdatedResult> UpdateProfileAsync(UserUpdateLogic userLogic);
     Task<bool> DeleteProfileAsync(Guid id);
+
+    Task<Guid> CheckUserExist(Guid userId);
+
+    Task<List<UserNameInfo>> GetUserNameListAsync();
 }

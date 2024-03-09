@@ -8,27 +8,28 @@ namespace Api.Controllers;
 
 [Route("api/vacancy")]
 [ApiController]
-public class VacancyController: ControllerBase
+public class VacancyController : ControllerBase
 {
 
     private readonly IVacancyService _vacancyService;
+
     public VacancyController(IVacancyService vacancyService)
     {
         _vacancyService = vacancyService;
     }
-    
+
     [HttpPost("create")]
     [ProducesResponseType(200)]
     public async Task<IActionResult> CreateVacancyAsync([FromBody] CreateVacancyRequest createVacancy)
     {
-        var res = _vacancyService.CreateVacancyAsync(new Domain.Entities.Vacancy()
+        var res = await _vacancyService.CreateVacancyAsync(new Domain.Entities.Vacancy()
         {
             VacancyStatus = VacancyStatus.Open,
             Description = createVacancy.Description,
             EmployerId = createVacancy.EmployerId,
             Title = createVacancy.Title
         });
-        return Ok();
+        return Ok(res);
     }
 
     [HttpPut("update")]
@@ -46,4 +47,11 @@ public class VacancyController: ControllerBase
         return Ok();
     }
 
+    [HttpGet]
+    [ProducesResponseType<List<Domain.Entities.Vacancy>>(200)]
+    public async Task<IActionResult> GetVacancyListAsync()
+    {
+       var res = await _vacancyService.GetVacancyListAsync();
+       return Ok(res);
+    }
 }

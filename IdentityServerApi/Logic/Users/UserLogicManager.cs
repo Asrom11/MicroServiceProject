@@ -51,7 +51,7 @@ public class UserLogicManager: IUserLogicManager
             return false;
         }
         
-        if (await _roleLogicManager.RoleExistsAsync(userLogic.Role.ToString()))
+        if (await _roleLogicManager.RoleExistsAsync(userLogic.Role.ToString()) is null)
         {
             
             var roleDal = new RoleDal()
@@ -125,5 +125,26 @@ public class UserLogicManager: IUserLogicManager
     {
         var status = await _userRepository.DeleteAsync(id);
         return status;
+    }
+
+    public async Task<Guid> CheckUserExist(Guid userId)
+    {
+        var user = await _userRepository.GetProfileAsyncById(userId);
+        return user.Id;
+    }
+
+    public async Task<List<UserNameInfo>> GetUserNameListAsync()
+    {
+        var users = await _userRepository.GetAllUser();
+        var userNameInfos = users.Select(user => new UserNameInfo
+        {
+            UserList = new UserListLogic
+            {
+                Name = user.Name,
+                UserId = user.Id 
+            }
+        }).ToList();
+
+        return userNameInfos;
     }
 }

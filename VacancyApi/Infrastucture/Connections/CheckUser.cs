@@ -1,29 +1,23 @@
-﻿using Services.Interfaces;
+﻿using ProfileConnectionLib.ConnectionServices.DtoModels.CheckUserExists;
+using ProfileConnectionLib.ConnectionServices.Interfaces;
+using Services.Interfaces;
 
 namespace Infrastucture.Connections;
 
 public class CheckUser: IChekUser
 {
-    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IProfileConnectionServcie  _profileConnectionServcie;
 
-    public CheckUser(IHttpClientFactory httpClientFactory)
+    public CheckUser(IProfileConnectionServcie profileConnectionServcie)
     {
-        _httpClientFactory = httpClientFactory;
+        _profileConnectionServcie = profileConnectionServcie;
     }
     
     public async Task CheckUserExistAsync(Guid userId)
     {
-        var client = _httpClientFactory.CreateClient();
-        var res = await client.GetAsync("temp");
-        
-        if (res is null)
+        await _profileConnectionServcie.CheckUserExistAsync(new CheckUserExistProfileApiRequest
         {
-            throw new Exception("User not found");
-        }
+            UserId = userId
+        });
     }
-}
-
-public interface IHttpClientFactory
-{
-    public HttpClient CreateClient();
 }

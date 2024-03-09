@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace ExampleCore.Dal.Base;
 
 /// <summary>
@@ -9,5 +11,6 @@ public record BaseEntityDal<T>
     /// <summary>
     /// уникальный идентфиикатор сущности
     /// </summary>
+    ///
     public T Id { get;  set; }
 }

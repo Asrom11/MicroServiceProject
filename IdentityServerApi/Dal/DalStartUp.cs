@@ -1,6 +1,8 @@
 ﻿
 using IdentityServerDal.Roles;
 using IdentityServerDal.Roles.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -15,9 +17,11 @@ public static class DalStartUp
         return serviceCollection;
     }
     
-    public static IServiceCollection TryAddApplicationContext(this IServiceCollection serviceCollection)
+    public static IServiceCollection TryAddApplicationContext(this IServiceCollection serviceCollection, IConfigurationManager configurationManager)
     {
-        serviceCollection.AddDbContext<ApplicationDbContext>();
+        var connectionString = configurationManager.GetConnectionString("DefaultConnection");
+        serviceCollection.AddDbContext<ApplicationDbContext>(options =>
+            options.UseNpgsql(connectionString));
         return serviceCollection;
     }
 }

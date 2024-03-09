@@ -16,6 +16,7 @@ public class ApplicationsController: ControllerBase
     }
     
     [HttpGet]
+    [ProducesResponseType(typeof(VacancyApplication),200)]
     public async Task<IActionResult> GetApplication([FromQuery] Guid id)
     {
         var res = await _applicationService.GetApplicationByIdAsync(id);
@@ -23,6 +24,7 @@ public class ApplicationsController: ControllerBase
     }
 
     [HttpGet("byvacancy/{id}")]
+    [ProducesResponseType(200)]
     public async Task<IActionResult> GetApplicationsByVacancy([FromQuery] Guid vacancyId)
     {
         var res = await _applicationService.GetApplicationsByVacancyIdAsync(vacancyId);
@@ -30,6 +32,7 @@ public class ApplicationsController: ControllerBase
     }
     
     [HttpPost("create")]
+    [ProducesResponseType(200)]
     public async Task<IActionResult> CreateApplication([FromBody] CreateApplicationsRequest application)
     {
         var res = await _applicationService.CreateApplicationAsync(new VacancyApplication()
@@ -43,6 +46,7 @@ public class ApplicationsController: ControllerBase
     }
     
     [HttpPut("update")]
+    [ProducesResponseType(200)]
     public async Task<IActionResult> UpdateApplication([FromBody] UpdateApplicationRequest application)
     {
         await _applicationService.UpdateApplicationAsync(new VacancyApplication()
@@ -55,6 +59,7 @@ public class ApplicationsController: ControllerBase
     }
     
     [HttpDelete]
+    [ProducesResponseType(200)]
     public async Task<IActionResult> DeleteApplication([FromBody] DeleApplicationRequest deleApplicationRequest)
     {
         await _applicationService.DeleteApplicationAsync(deleApplicationRequest.ApplicationId,deleApplicationRequest.UserId);

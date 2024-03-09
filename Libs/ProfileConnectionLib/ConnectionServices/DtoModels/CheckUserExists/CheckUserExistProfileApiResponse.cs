@@ -1,6 +1,6 @@
 namespace ProfileConnectionLib.ConnectionServices.DtoModels.CheckUserExists;
 
-public record CheckUserExistProfileApiResponse
+public record CheckUserExistProfileApiResponse: CheckUserExistProfileApiRequest
 {
    
 }

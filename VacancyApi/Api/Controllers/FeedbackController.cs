@@ -16,6 +16,7 @@ public class FeedbackController: ControllerBase
     }
     
     [HttpGet]
+    [ProducesResponseType(200)]
     public async Task<IActionResult> GetFeedbackByVacancy([FromQuery] Guid vacancyId)
     {
         var res = await _feedbackService.GetFeedbackByVacancyId(vacancyId);
@@ -23,6 +24,7 @@ public class FeedbackController: ControllerBase
     }
 
     [HttpPost("create")]
+    [ProducesResponseType(200)]
     public async Task<IActionResult> CreateFeedback([FromBody] CreateFeedbackRequest feedback)
     {
         var res = await _feedbackService.CreateFeedback(new VacancyFeedback()
@@ -33,10 +35,11 @@ public class FeedbackController: ControllerBase
             Rating = feedback.Rating,
             SubmittedDate = DateTime.Now.ToUniversalTime()
         });
-        return Ok();  
+        return Ok(res);  
     }
 
     [HttpPut("update")]
+    [ProducesResponseType(200)]
     public async Task<IActionResult> UpdateFeedback([FromBody] UpdateFeedbackRequest feedback)
     {
         await _feedbackService.UpdateFeedback(feedback.FeedBackId,new VacancyFeedback()
@@ -50,8 +53,10 @@ public class FeedbackController: ControllerBase
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteFeedback(int id)
+    [ProducesResponseType(200)]
+    public async Task<IActionResult> DeleteFeedback([FromBody] DeleteFeedbackRequest deleteFeedbackRequest)
     {
+        await _feedbackService.DeleteFeedback(deleteFeedbackRequest.FeedbackId,deleteFeedbackRequest.UserId);
         return Ok();
     }
 }

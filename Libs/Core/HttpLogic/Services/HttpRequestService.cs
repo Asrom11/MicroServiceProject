@@ -134,15 +134,29 @@ internal class HttpRequestService : IHttpRequestService
     {
         var client = _httpConnectionService.CreateHttpClient(connectionData);
 
-        var httpRequestMessage = new HttpRequestMessage();
+        var httpRequestMessage = new HttpRequestMessage()
+        {
+            RequestUri = requestData.Uri,
+            Method = requestData.Method
+        };
 
         foreach (var traceWriter in _traceWriterList)
         {
             httpRequestMessage.Headers.Add(traceWriter.Name, traceWriter.GetValue());
         }
 
+        if (requestData.Body is not null)
+        {
+            httpRequestMessage.Content = PrepairContent(requestData.Body, requestData.ContentType);
+        }
+        
         var res = await _httpConnectionService.SendRequestAsync(httpRequestMessage, client, connectionData.CancellationToken);
-        return null;
+        var response = await res.Content.ReadAsStringAsync();
+        Console.WriteLine(response);
+        
+        var responses = JsonConvert.DeserializeObject<TResponse>(response);
+        
+        return new HttpResponse<TResponse> { Body = responses, StatusCode = res.StatusCode };
     }
 
     private static HttpContent PrepairContent(object body, ContentType contentType)

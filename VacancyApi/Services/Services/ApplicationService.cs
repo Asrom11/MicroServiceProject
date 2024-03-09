@@ -21,7 +21,6 @@ public class ApplicationService: IApplicationService
     public async Task<IEnumerable<VacancyApplication>> GetApplicationsByVacancyIdAsync(Guid vacancyId)
     {
         var res = await _storeApplication.GetApplicationsByVacancyIdAsync(vacancyId);
-        // another microservice requst for name
         return res;
     }
 

@@ -6,7 +6,7 @@ namespace IdentityServerDal.Roles.Models;
 
 public record Resume: BaseEntityDal<Guid>
 {
-    [ForeignKey("users")]
+    [ForeignKey("UserDal")]
     public  Guid UserId { get; set; }
     
     public required int Experience { get; set; }

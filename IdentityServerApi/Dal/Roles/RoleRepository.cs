@@ -129,9 +129,12 @@ public class RoleRepository: IRoleRepository
         }
     }
 
-    public async Task<bool> CheckRoleByNameAsync(string name)
+    public async Task<string> CheckRoleByNameAsync(string name)
     {
-        return await _applicationDbContext.Roles
-            .AnyAsync(r => r.Name == name);
+        var roleName = await _applicationDbContext.Roles
+            .Where(r => r.Name == name)
+            .Select(r => r.Name)
+            .FirstOrDefaultAsync();;
+        return roleName;
     }
 }

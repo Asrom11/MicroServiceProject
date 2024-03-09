@@ -10,7 +10,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.TryAddDal();
 builder.Services.TryAddLogic();
-builder.Services.TryAddApplicationContext();
+builder.Services.TryAddApplicationContext(builder.Configuration);
 
 var app = builder.Build();
 
@@ -21,4 +21,5 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapControllers();
 app.Run();

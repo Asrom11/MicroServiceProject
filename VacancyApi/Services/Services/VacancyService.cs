@@ -1,5 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using ProfileConnectionLib.ConnectionServices.DtoModels.UserNameLists;
+using ProfileConnectionLib.ConnectionServices.Interfaces;
 using Services.Interfaces;
 
 namespace Services.Services;
@@ -9,9 +11,11 @@ public class VacancyService: IVacancyService
     private readonly IChekUser _chekUser;
     private readonly IStoreVacancy _storeVacancy;
     private readonly IStandartStore<Vacancy> _standartStore;
+    private readonly IProfileConnectionServcie _profileConnectionServcie;
     
-    public VacancyService(IStandartStore<Vacancy> standartStore, IChekUser chekUser, IStoreVacancy storeVacancy)
+    public VacancyService(IStandartStore<Vacancy> standartStore, IChekUser chekUser, IStoreVacancy storeVacancy, IProfileConnectionServcie profileConnectionServcie)
     {
+        _profileConnectionServcie = profileConnectionServcie;
         _standartStore = standartStore;
         _chekUser = chekUser;
         _storeVacancy = storeVacancy;
@@ -27,8 +31,24 @@ public class VacancyService: IVacancyService
         await post.UpdateAsync(_standartStore,_storeVacancy,_chekUser);
     }
 
-    public Task<IEnumerable<Vacancy>> GetPostListasync()
+    public  async Task<List<Vacancy>> GetVacancyListAsync()
     {
-        throw new NotImplementedException();
+        var vacancyList =  await _standartStore.GetAllAsync();
+        var employerIdList = vacancyList.Select(value => value.EmployerId).ToArray();
+
+        var employerNameList = await _profileConnectionServcie.GetUserNameListAsync(new UserNameListProfileApiRequest()
+        {
+            UserIdList = employerIdList
+        });
+        
+        var employerNamesDict = employerNameList.ToDictionary(user => user.UserList.UserId, user => user.UserList.Name);
+        
+        foreach (var vacancy in vacancyList)
+        {
+            vacancy.UserInfo = employerNamesDict.TryGetValue(vacancy.EmployerId, out var employerName) 
+                ? new CreatedVacancyUserInfo { Name = employerName } : new CreatedVacancyUserInfo { Name = "Lost" };
+        }
+        
+        return vacancyList;
     }
 }

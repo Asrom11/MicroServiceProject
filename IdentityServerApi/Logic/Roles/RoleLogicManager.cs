@@ -13,7 +13,7 @@ public class RoleLogicManager: IRoleLogicManager
     }
     public async Task<bool> CreateRoleAsync(RoleDal role)
     {
-        if (await _roleRepository.CheckRoleByNameAsync(role.Name))
+        if (await _roleRepository.CheckRoleByNameAsync(role.Name) is not null)
         {
             return false;
         }
@@ -22,7 +22,7 @@ public class RoleLogicManager: IRoleLogicManager
         return status;
     }
 
-    public async Task<bool> RoleExistsAsync(string name)
+    public async Task<string> RoleExistsAsync(string name)
     {
         var status = await _roleRepository.CheckRoleByNameAsync(name);
         return status;

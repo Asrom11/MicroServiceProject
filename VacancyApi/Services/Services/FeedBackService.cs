@@ -19,7 +19,7 @@ public class FeedBackService: IFeedbackService
         _chekUser = chekUser;
         _storeVacancy = storeVacancy;
     }
-    public async Task<IEnumerable<VacancyFeedback>> GetFeedbackByVacancyId(Guid vacancyId)
+    public async Task<List<VacancyFeedback>> GetFeedbackByVacancyId(Guid vacancyId)
     {
         var res = await _storeFeedback.GetByVacancyIdAsync(vacancyId);
         // and get name

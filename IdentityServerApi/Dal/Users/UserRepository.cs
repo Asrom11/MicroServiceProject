@@ -100,4 +100,9 @@ public class UserRepository: IUserRepository
         return await _applicationDbContext.Users
             .AnyAsync(u => u.Email == email);
     }
+
+    public async Task<List<UserDal>> GetAllUser()
+    {
+        return await _applicationDbContext.Users.ToListAsync();
+    }
 }

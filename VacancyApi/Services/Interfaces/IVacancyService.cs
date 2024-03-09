@@ -8,5 +8,5 @@ public interface IVacancyService
 
     Task UpdateVacancyAsync(Vacancy post);
 
-    Task<IEnumerable<Vacancy>> GetPostListasync();
+    Task<List<Vacancy>> GetVacancyListAsync();
 }
