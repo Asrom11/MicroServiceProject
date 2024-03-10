@@ -22,7 +22,6 @@ public class FeedBackService: IFeedbackService
     public async Task<List<VacancyFeedback>> GetFeedbackByVacancyId(Guid vacancyId)
     {
         var res = await _storeFeedback.GetByVacancyIdAsync(vacancyId);
-        // and get name
         return res;
     }
 
