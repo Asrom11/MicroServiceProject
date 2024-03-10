@@ -23,7 +23,7 @@ public class ApplicationsController: ControllerBase
         return Ok(res);
     }
 
-    [HttpGet("byvacancy/{id}")]
+    [HttpGet("byvacancy")]
     [ProducesResponseType(200)]
     public async Task<IActionResult> GetApplicationsByVacancy([FromQuery] Guid vacancyId)
     {

@@ -129,8 +129,8 @@ public class UserLogicManager: IUserLogicManager
 
     public async Task<Guid> CheckUserExist(Guid userId)
     {
-        var user = await _userRepository.GetProfileAsyncById(userId);
-        return user.Id;
+        var res = await _userRepository.CheckUserExist(userId);
+        return res;
     }
 
     public async Task<List<UserNameInfo>> GetUserNameListAsync()

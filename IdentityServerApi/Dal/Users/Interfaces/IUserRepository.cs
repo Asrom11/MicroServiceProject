@@ -13,4 +13,6 @@ public interface IUserRepository
 
     public Task<bool> CheckEmailAsync(string email);
     public Task<List<UserDal>> GetAllUser();
+
+    public Task<Guid> CheckUserExist(Guid userId);
 }
