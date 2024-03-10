@@ -8,4 +8,7 @@
       <ProjectReference Include="..\Infrastucture\Infrastucture.csproj" />
       <ProjectReference Include="..\Services\Services.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Controllers\Vacancy\Response\" />
+    </ItemGroup>
 </Project>
