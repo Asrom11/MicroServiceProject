@@ -26,10 +26,4 @@ public static class InfrastuctureStartUp
             options.UseNpgsql(connectionString));
         return serviceCollection;
     }
-    
-    public static IServiceCollection TryAddApplicationContext(this IServiceCollection serviceCollection)
-    {
-        serviceCollection.AddDbContext<ApplicationDbContext>();
-        return serviceCollection;
-    }
 }
