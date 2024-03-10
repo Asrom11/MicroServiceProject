@@ -1,7 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-
-using Domain.Interfaces;
+﻿using ExampleCore.HttpLogic;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using ProfileConnectionLib.ConnectionServices;
@@ -17,6 +14,7 @@ public static class ServiceStartUp
         serviceCollection.TryAddScoped<IVacancyService, VacancyService>();
         serviceCollection.TryAddScoped<IFeedbackService, FeedBackService>();
         serviceCollection.TryAddScoped<IProfileConnectionServcie, ProfileConnectionService>();
+        serviceCollection.AddHttpRequestService();
         return serviceCollection;
     }
     
