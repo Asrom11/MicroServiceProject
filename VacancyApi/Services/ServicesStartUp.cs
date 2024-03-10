@@ -1,6 +1,7 @@
 ﻿using ExampleCore.HttpLogic;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using ProfileConnectionLib;
 using ProfileConnectionLib.ConnectionServices;
 using ProfileConnectionLib.ConnectionServices.Interfaces;
 using Services.Interfaces;
@@ -15,6 +16,7 @@ public static class ServiceStartUp
         serviceCollection.TryAddScoped<IFeedbackService, FeedBackService>();
         serviceCollection.TryAddScoped<IProfileConnectionServcie, ProfileConnectionService>();
         serviceCollection.AddHttpRequestService();
+        serviceCollection.TryAddProfileLib();
         return serviceCollection;
     }
     

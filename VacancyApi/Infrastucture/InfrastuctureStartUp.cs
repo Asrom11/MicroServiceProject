@@ -20,7 +20,6 @@ public static class InfrastuctureStartUp
         serviceCollection.TryAddScoped<IStoreApplication, ApplicationRepository>();
         serviceCollection.TryAddScoped<IStoreFeedback, VacancyFeedbackRepository>();
         serviceCollection.TryAddScoped<IStoreVacancy, VacancyRepository>();
-        serviceCollection.TryAddProfileLib();
         
         var connectionString = configurationManager.GetConnectionString("DefaultConnection");
         serviceCollection.AddDbContext<ApplicationDbContext>(options =>
