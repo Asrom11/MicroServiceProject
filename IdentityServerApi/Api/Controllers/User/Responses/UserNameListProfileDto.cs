@@ -2,10 +2,10 @@
 
 public record UserNameListProfileDto
 {
-    public required UserList UserList { get; set; }
+    public required UserListProfileDto UserListProfileDto { get; set; }
 }
 
-public record UserList
+public record UserListProfileDto
 {
     public required string Name { get; init; }
     
