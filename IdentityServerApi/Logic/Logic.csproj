@@ -13,7 +13,9 @@
 
     <ItemGroup>
       <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0-preview.1.24080.9" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+      <PackageReference Include="Npgsql" Version="8.0.2" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
       <PackageReference Include="Uuid7" Version="1.7.0" />
     </ItemGroup>
 

@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Core.Dal.Base;
+using ExampleCore.Dal.Base;
 
 
 namespace IdentityServerDal.Roles.Models;
 
-public record Resume: BaseEntityDal<Guid>
+public record Resume: BaseEntity<Guid>
 {
-    [ForeignKey("users")]
+    [ForeignKey("UserDal")]
     public  Guid UserId { get; set; }
     
     public required int Experience { get; set; }

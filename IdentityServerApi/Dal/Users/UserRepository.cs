@@ -54,6 +54,15 @@ public class UserRepository: IUserRepository
             .FirstOrDefaultAsync(u => u.Id == id))!;
     }
 
+    public async Task<Guid> CheckUserExist(Guid userId)
+    {
+        var userIdResult = await _applicationDbContext.Users
+            .Where(u => u.Id == userId)
+            .Select(u => u.Id)
+            .FirstOrDefaultAsync();
+        return userIdResult;
+    }
+
     public async Task<UpdatedResult> UpdateAsync(UserDal userDal)
     { 
         await using var transaction = _applicationDbContext.Database.BeginTransaction();
@@ -99,5 +108,10 @@ public class UserRepository: IUserRepository
     {
         return await _applicationDbContext.Users
             .AnyAsync(u => u.Email == email);
+    }
+
+    public async Task<List<UserDal>> GetAllUser()
+    {
+        return await _applicationDbContext.Users.ToListAsync();
     }
 }

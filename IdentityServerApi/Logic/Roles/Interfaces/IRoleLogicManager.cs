@@ -6,7 +6,7 @@ public interface IRoleLogicManager
 {
     public Task<bool> CreateRoleAsync(RoleDal role);
 
-    public Task<bool> RoleExistsAsync(string name);
+    public Task<string> RoleExistsAsync(string name);
 
     public Task<bool> UpdateRoleAsync(RoleDal role);
 

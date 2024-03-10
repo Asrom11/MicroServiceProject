@@ -4,6 +4,7 @@ using IdentityServerLogic.Users.Models;
 using MicroServicesProject.Controllers.User.Requests;
 using MicroServicesProject.Controllers.User.Response;
 using Microsoft.AspNetCore.Mvc;
+using UserNameListProfileDto = MicroServicesProject.Controllers.User.Requests.UserNameListProfileDto;
 
 namespace MicroServicesProject.Controllers;
 
@@ -78,5 +79,25 @@ public class UserController: ControllerBase
     {
         var res = await _userLogicManager.DeleteProfileAsync(userId);
         return res is true ? Ok(new { Status = "Success", Message = "Profile deleted successfully." }) : StatusCode(500, "Failed, try again later");
+    }
+
+    [HttpPost("namelist")]
+    [ProducesResponseType(typeof(UserNameInfo),200)]
+    public async Task<IActionResult> GetUserNameListAsync([FromBody] UserNameListProfileDto userNameListProfileDto)
+    {
+        var res = await _userLogicManager.GetUserNameListAsync();
+        return Ok(res);
+    }
+
+    
+    [HttpPost("exist")]
+    [ProducesResponseType(typeof(UserExistProfileDtoResponse),200)]
+    public async Task<IActionResult> CheckUserExistProfile([FromBody] UserExistProfileDtoRequst userExistProfileDtoRequst)
+    {
+        var res = await _userLogicManager.CheckUserExist(userExistProfileDtoRequst.UserId);
+        return Ok(new UserExistProfileDtoResponse()
+        {
+            UserId = res
+        });
     }
 }

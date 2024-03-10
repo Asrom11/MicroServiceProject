@@ -12,4 +12,7 @@ public interface IUserRepository
     public Task<bool> DeleteAsync(Guid id);
 
     public Task<bool> CheckEmailAsync(string email);
+    public Task<List<UserDal>> GetAllUser();
+
+    public Task<Guid> CheckUserExist(Guid userId);
 }

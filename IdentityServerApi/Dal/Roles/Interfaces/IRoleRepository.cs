@@ -16,5 +16,5 @@ public interface IRoleRepository
 
     public Task RemoveRoleFromUserAsync(Guid userId, RoleDal roleDal);
 
-    public Task<bool> CheckRoleByNameAsync(string name);
+    public Task<string> CheckRoleByNameAsync(string name);
 }
