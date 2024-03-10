@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Infrastucture.Data;
 
 public class BaseRepository<T>: IStandartStore<T> 
-    where T: BaseEntityDal<Guid>
+    where T: BaseEntity<Guid>
 {
     private readonly ApplicationDbContext _applicationDbContext;
     public BaseRepository(ApplicationDbContext applicationDbContext)

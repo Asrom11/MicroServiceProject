@@ -1,6 +1,6 @@
 ﻿namespace MicroServicesProject.Controllers.User.Response;
 
-public record UserNameListProfileApiResponse
+public record UserNameListProfileDto
 {
     public required UserList UserList { get; set; }
 }

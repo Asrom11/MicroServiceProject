@@ -1,6 +1,6 @@
 ﻿namespace MicroServicesProject.Controllers.User.Requests;
 
-public record UserExistProfileRequst
+public record UserExistProfileDtoRequst
 {
     public required Guid UserId { get; init; }
 }

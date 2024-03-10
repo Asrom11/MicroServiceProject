@@ -4,7 +4,7 @@ using ExampleCore.Dal.Base;
 
 namespace IdentityServerDal.Roles.Models;
 
-public record Resume: BaseEntityDal<Guid>
+public record Resume: BaseEntity<Guid>
 {
     [ForeignKey("UserDal")]
     public  Guid UserId { get; set; }

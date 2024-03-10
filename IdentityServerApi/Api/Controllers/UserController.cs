@@ -4,6 +4,7 @@ using IdentityServerLogic.Users.Models;
 using MicroServicesProject.Controllers.User.Requests;
 using MicroServicesProject.Controllers.User.Response;
 using Microsoft.AspNetCore.Mvc;
+using UserNameListProfileDto = MicroServicesProject.Controllers.User.Requests.UserNameListProfileDto;
 
 namespace MicroServicesProject.Controllers;
 
@@ -82,7 +83,7 @@ public class UserController: ControllerBase
 
     [HttpPost("namelist")]
     [ProducesResponseType(typeof(UserNameInfo),200)]
-    public async Task<IActionResult> GetUserNameListAsync([FromBody] UserNameListProfileApiRequest userNameListProfileApiRequest)
+    public async Task<IActionResult> GetUserNameListAsync([FromBody] UserNameListProfileDto userNameListProfileDto)
     {
         var res = await _userLogicManager.GetUserNameListAsync();
         return Ok(res);
@@ -90,11 +91,11 @@ public class UserController: ControllerBase
 
     
     [HttpPost("exist")]
-    [ProducesResponseType(typeof(UserExistProfileResponse),200)]
-    public async Task<IActionResult> CheckUserExistProfile([FromBody] UserExistProfileRequst userExistProfileRequst)
+    [ProducesResponseType(typeof(UserExistProfileDtoResponse),200)]
+    public async Task<IActionResult> CheckUserExistProfile([FromBody] UserExistProfileDtoRequst userExistProfileDtoRequst)
     {
-        var res = await _userLogicManager.CheckUserExist(userExistProfileRequst.UserId);
-        return Ok(new UserExistProfileResponse()
+        var res = await _userLogicManager.CheckUserExist(userExistProfileDtoRequst.UserId);
+        return Ok(new UserExistProfileDtoResponse()
         {
             UserId = res
         });

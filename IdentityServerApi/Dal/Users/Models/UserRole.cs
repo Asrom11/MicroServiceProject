@@ -4,7 +4,7 @@ using ExampleCore.Dal.Base;
 
 namespace IdentityServerDal.Roles.Models;
 
-public record UserRole: BaseEntityDal<Guid>
+public record UserRole: BaseEntity<Guid>
 {
     [ForeignKey("users")]
     public required Guid UserId { get; init; }

@@ -2,7 +2,7 @@
 
 namespace MicroServicesProject.Controllers.User.Response;
 
-public record UserExistProfileResponse:UserExistProfileRequst
+public record UserExistProfileDtoResponse:UserExistProfileDtoRequst
 {
     
 }

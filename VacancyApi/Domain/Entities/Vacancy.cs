@@ -8,7 +8,7 @@ using Services.Interfaces;
 
 namespace Domain.Entities;
 
-public record Vacancy: BaseEntityDal<Guid>
+public record Vacancy: BaseEntity<Guid>
 {
     public required Guid EmployerId { get; init; }
     

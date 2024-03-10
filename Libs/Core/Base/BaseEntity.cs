@@ -6,7 +6,7 @@ namespace ExampleCore.Dal.Base;
 /// Базовая сущность для работы с сущностями в бд
 /// </summary>
 /// <typeparam name="T">тип идентификатор</typeparam>
-public record BaseEntityDal<T>
+public record BaseEntity<T>
 {
     /// <summary>
     /// уникальный идентфиикатор сущности

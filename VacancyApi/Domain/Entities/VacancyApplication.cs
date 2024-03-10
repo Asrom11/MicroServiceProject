@@ -4,7 +4,7 @@ using Services.Interfaces;
 
 namespace Domain.Entities;
 
-public record VacancyApplication: BaseEntityDal<Guid>
+public record VacancyApplication: BaseEntity<Guid>
 {
     public Guid VacancyId { get; set; }
     public Guid ApplicantId { get; set; }
