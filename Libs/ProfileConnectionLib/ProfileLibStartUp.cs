@@ -16,22 +16,6 @@ public static class ProfileLibStartUp
     {
         serviceCollection.TryAddScoped<IProfileConnectionServcie, ProfileConnectionService>();
         serviceCollection.AddBrokerLogic();
-        serviceCollection.AddMassTransit(x =>
-        {
-            x.AddRequestClient<CheckUserExistProfileApiRequest>();
-            x.AddRequestClient<UserNameListProfileApiRequest>();
-            
-            x.UsingRabbitMq((context, cfg) =>
-            {
-                cfg.Host("localhost", "/", h =>
-                {
-                    h.Username("guest");
-                    h.Password("guest");
-                });
-            });
-            
-        });
-        
         return serviceCollection;
     }
 }
