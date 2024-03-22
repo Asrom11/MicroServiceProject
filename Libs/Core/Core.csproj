@@ -33,8 +33,4 @@
         <PackageReference Include="Uuid7" Version="1.7.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="BrokerLogic\Producer\" />
-    </ItemGroup>
-
 </Project>
