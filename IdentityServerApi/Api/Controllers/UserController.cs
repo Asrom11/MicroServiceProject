@@ -4,6 +4,7 @@ using IdentityServerLogic.Users.Models;
 using MicroServicesProject.Controllers.User.Requests;
 using MicroServicesProject.Controllers.User.Response;
 using Microsoft.AspNetCore.Mvc;
+using ProfileConnectionLib.ConnectionServices.DtoModels.UserNameLists;
 using UserNameListProfileDto = MicroServicesProject.Controllers.User.Requests.UserNameListProfileDto;
 
 namespace MicroServicesProject.Controllers;
@@ -85,8 +86,18 @@ public class UserController: ControllerBase
     [ProducesResponseType(typeof(UserNameInfo),200)]
     public async Task<IActionResult> GetUserNameListAsync([FromBody] UserNameListProfileDto userNameListProfileDto)
     {
-        var res = await _userLogicManager.GetUserNameListAsync();
-        return Ok(res);
+        var res = await _userLogicManager.GetUserNameListAsync(userNameListProfileDto.UserIdList);
+        
+        var userNameInfos = res.Select(user => new UserNameListProfileApiResponse
+        {
+            UserList = new UserList
+            {
+                Name = user.Name,
+                UserId = user.Id 
+            }
+        }).ToList();
+        
+        return Ok(userNameInfos);
     }
 
     

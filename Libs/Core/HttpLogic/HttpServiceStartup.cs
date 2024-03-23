@@ -23,8 +23,8 @@ public static class HttpServiceStartup
             .AddHttpClient()
             .AddTransient<IHttpConnectionService, HttpConnectionService>();
         
-        services.TryAddTransient<IHttpRequestService, HttpRequestService>();
-        
+        services.TryAddKeyedTransient<IHttpRequestService, HttpRequestService>("http");
+
         return services;
     }
 }

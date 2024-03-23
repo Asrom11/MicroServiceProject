@@ -133,18 +133,14 @@ public class UserLogicManager: IUserLogicManager
         return res;
     }
 
-    public async Task<List<UserNameInfo>> GetUserNameListAsync()
+    public async Task<List<UserDal>> GetUserNameListAsync(Guid[] userList)
     {
         var users = await _userRepository.GetAllUser();
-        var userNameInfos = users.Select(user => new UserNameInfo
-        {
-            UserList = new UserListLogic
-            {
-                Name = user.Name,
-                UserId = user.Id 
-            }
-        }).ToList();
+        var userIdSet = new HashSet<Guid>(userList); 
+        var filteredUsers = users.Where(user => userIdSet.Contains(user.Id)).ToList();
+        
 
-        return userNameInfos;
+        return filteredUsers;
+
     }
 }

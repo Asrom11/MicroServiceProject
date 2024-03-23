@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "..\Libs\Core\Core.c
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{7BF4D5A6-13E5-48D5-B432-2D6530698F45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfileConnectionLib", "..\Libs\ProfileConnectionLib\ProfileConnectionLib.csproj", "{10FA914C-104D-4B13-BE60-0756145CC113}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +34,13 @@ Global
 		{4C00FCD2-0A29-430B-9C52-F4714AB84D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C00FCD2-0A29-430B-9C52-F4714AB84D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C00FCD2-0A29-430B-9C52-F4714AB84D1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10FA914C-104D-4B13-BE60-0756145CC113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10FA914C-104D-4B13-BE60-0756145CC113}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10FA914C-104D-4B13-BE60-0756145CC113}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10FA914C-104D-4B13-BE60-0756145CC113}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4C00FCD2-0A29-430B-9C52-F4714AB84D1B} = {7BF4D5A6-13E5-48D5-B432-2D6530698F45}
+		{10FA914C-104D-4B13-BE60-0756145CC113} = {7BF4D5A6-13E5-48D5-B432-2D6530698F45}
 	EndGlobalSection
 EndGlobal

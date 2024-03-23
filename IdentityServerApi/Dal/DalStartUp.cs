@@ -1,4 +1,4 @@
-﻿
+﻿using IdentityServerDal;
 using IdentityServerDal.Roles;
 using IdentityServerDal.Roles.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace IdentityServerDal;
+namespace Dal;
 
 public static class DalStartUp
 {

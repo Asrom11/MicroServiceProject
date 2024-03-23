@@ -1,3 +1,5 @@
+using ProfileConnectionLib.ConnectionServices.Interfaces;
+
 namespace ProfileConnectionLib.ConnectionServices.DtoModels.UserNameLists;
 
 // "{name}{servicename}{request/response}"

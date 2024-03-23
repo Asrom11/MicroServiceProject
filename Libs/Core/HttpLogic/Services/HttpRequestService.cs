@@ -129,9 +129,10 @@ internal class HttpRequestService : IHttpRequestService
     }
 
     /// <inheritdoc />
-    public async Task<HttpResponse<TResponse>> SendRequestAsync<TResponse>(HttpRequestData requestData,
-        HttpConnectionData connectionData)
+    public async Task<HttpResponse<TResponse>> SendRequestAsync<TResponse,TRequest>(HttpRequestData requestData,
+        HttpConnectionData connectionData) where TResponse : class where TRequest : class
     {
+
         var client = _httpConnectionService.CreateHttpClient(connectionData);
 
         var httpRequestMessage = new HttpRequestMessage()
@@ -152,7 +153,6 @@ internal class HttpRequestService : IHttpRequestService
         
         var res = await _httpConnectionService.SendRequestAsync(httpRequestMessage, client, connectionData.CancellationToken);
         var response = await res.Content.ReadAsStringAsync();
-        Console.WriteLine(response);
         
         var responses = JsonConvert.DeserializeObject<TResponse>(response);
         
