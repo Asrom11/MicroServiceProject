@@ -2,8 +2,6 @@ using CoreLib.HttpServiceV2.Services.Interfaces;
 using ExampleCore.HttpLogic.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Polly;
-using Polly.Retry;
 using ProfileConnectionLib.ConnectionServices.DtoModels.CheckUserExists;
 using ProfileConnectionLib.ConnectionServices.DtoModels.UserNameLists;
 using ProfileConnectionLib.ConnectionServices.Interfaces;

@@ -15,4 +15,7 @@ public interface IUserLogicManager
     Task<Guid> CheckUserExist(Guid userId);
 
     Task<List<UserDal>> GetUserNameListAsync(Guid[] userList);
+
+    Task IncrementUserResponseAsync(Guid userId);
+    Task DicrementUserRespondeAsync(Guid userID);
 }

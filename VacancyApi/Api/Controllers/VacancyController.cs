@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
+using VacancyConnectionLib.ConnectionService.DtoModels.CheckVacancyExists;
 
 namespace Api.Controllers;
 
@@ -53,5 +54,17 @@ public class VacancyController : ControllerBase
     {
        var res = await _vacancyService.GetVacancyListAsync();
        return Ok(res);
+    }
+
+    
+    [HttpPost("exist")]
+    public async Task<IActionResult> CheckVacancyProfile([FromBody] CheckVacncyExistApiRequest vacncyExist)
+    {
+        var res = await _vacancyService.CheckVacancyExistAsync(vacncyExist.VacancyId);
+
+        return Ok(new CheckVacancyExistApiResponse()
+        {
+            VacancyId = res
+        });
     }
 }

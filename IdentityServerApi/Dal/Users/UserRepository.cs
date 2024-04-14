@@ -63,6 +63,38 @@ public class UserRepository: IUserRepository
         return userIdResult;
     }
 
+    public async Task IncrementApplicationCountAsync(Guid id)
+    {
+        var user = await GetUserAsync(id);
+
+        user.ApplicationsCount++;
+
+        await _applicationDbContext.SaveChangesAsync();
+
+    }
+
+    public async Task DicrementApplicationCountAsync(Guid id)
+    {
+        var user = await GetUserAsync(id);
+
+        user.ApplicationsCount--;
+
+        await _applicationDbContext.SaveChangesAsync();
+    }
+    
+    private async Task<UserDal> GetUserAsync(Guid id)
+    {
+        var user = await _applicationDbContext.Users.
+            FirstOrDefaultAsync(v => v.Id == id);
+
+        if (user is null)
+        {
+            throw new Exception("Vacancy not found");
+        }
+
+        return user;
+    }
+
     public async Task<UpdatedResult> UpdateAsync(UserDal userDal)
     { 
         await using var transaction = _applicationDbContext.Database.BeginTransaction();

@@ -1,6 +1,5 @@
 ﻿using Domain.Interfaces;
 using ExampleCore.Dal.Base;
-using Services.Interfaces;
 
 namespace Domain.Entities;
 
@@ -12,9 +11,9 @@ public record VacancyFeedback: BaseEntity<Guid>
     public required double Rating { get; set; }
     public  DateTime SubmittedDate { get; set; }
 
-    public async Task<Guid> SaveAsync(IStandartStore<VacancyFeedback> standartStore, IChekUser chekUser, IStoreVacancy storeVacancy)
+    public async Task<Guid> SaveAsync(IStandartStore<VacancyFeedback> standartStore, ICheckUser chekUser, IStoreVacancy storeVacancy)
     {
-        await chekUser.CheckUserExistAsync(ApplicantId);
+        await chekUser.CheckEntityAsync(ApplicantId);
         await storeVacancy.CheckExcistVacancy(VacancyId);
         
         var res =  await standartStore.CreateAsync(this);
