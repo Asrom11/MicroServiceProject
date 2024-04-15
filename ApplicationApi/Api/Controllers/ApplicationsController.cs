@@ -1,6 +1,9 @@
-﻿using Api.Controllers.Applications;
+﻿
+
+using Api.Controllers.Applications;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Services.Contracts.Application;
 using Services.Interfaces;
 
 namespace Api.Controllers;
@@ -35,12 +38,10 @@ public class ApplicationsController: ControllerBase
     [ProducesResponseType(200)]
     public async Task<IActionResult> CreateApplication([FromBody] CreateApplicationsRequest application)
     {
-        var res = await _applicationService.CreateApplicationAsync(new VacancyApplication()
+        var res = await _applicationService.CreateApplicationSagaAsync(new VacancyApplication()
         {
-            ApplicationDate = DateTime.Now.ToUniversalTime(),
-            ApplicantId = application.UserId,
             VacancyId = application.VacancyId,
-            Status = ApplicationStatus.Received,
+            ApplicantId = application.UserId
         });
         return Ok(res);
     }
@@ -53,7 +54,7 @@ public class ApplicationsController: ControllerBase
         {
             Status = application.Status,
             Id = application.ApplicationId,
-            VacancyId = application.VacancyId
+            VacancyId = application.VacancyId,
         }, application.EmployerId);
         return Ok( new {Status = true});
     }

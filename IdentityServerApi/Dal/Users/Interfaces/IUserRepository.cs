@@ -15,4 +15,8 @@ public interface IUserRepository
     public Task<List<UserDal>> GetAllUser();
 
     public Task<Guid> CheckUserExist(Guid userId);
+    
+    Task IncrementApplicationCountAsync(Guid id);
+
+    Task DicrementApplicationCountAsync(Guid id);
 }

@@ -14,6 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "..\Libs\Core\Core.c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfileConnectionLib", "..\Libs\ProfileConnectionLib\ProfileConnectionLib.csproj", "{FD8EF309-F5CE-41E9-9A4D-D445E9B4D69B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VacancyConnectionLib", "..\Libs\VacancyConnectionLib\VacancyConnectionLib.csproj", "{7939E606-1E97-4890-903D-C44B51442691}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSagaLib", "..\Libs\ApplicationSagaLib\ApplicationSagaLib.csproj", "{DAEFBEA7-E5DC-409A-8B51-CB98B1FDFEEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,9 +48,19 @@ Global
 		{FD8EF309-F5CE-41E9-9A4D-D445E9B4D69B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD8EF309-F5CE-41E9-9A4D-D445E9B4D69B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD8EF309-F5CE-41E9-9A4D-D445E9B4D69B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7939E606-1E97-4890-903D-C44B51442691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7939E606-1E97-4890-903D-C44B51442691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7939E606-1E97-4890-903D-C44B51442691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7939E606-1E97-4890-903D-C44B51442691}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAEFBEA7-E5DC-409A-8B51-CB98B1FDFEEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAEFBEA7-E5DC-409A-8B51-CB98B1FDFEEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAEFBEA7-E5DC-409A-8B51-CB98B1FDFEEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAEFBEA7-E5DC-409A-8B51-CB98B1FDFEEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3E40A0C4-3FDD-4853-B232-A43052B523C6} = {6AD5CE8A-FC27-4B5A-B7F2-A57446B6F0BD}
 		{FD8EF309-F5CE-41E9-9A4D-D445E9B4D69B} = {6AD5CE8A-FC27-4B5A-B7F2-A57446B6F0BD}
+		{7939E606-1E97-4890-903D-C44B51442691} = {6AD5CE8A-FC27-4B5A-B7F2-A57446B6F0BD}
+		{DAEFBEA7-E5DC-409A-8B51-CB98B1FDFEEC} = {6AD5CE8A-FC27-4B5A-B7F2-A57446B6F0BD}
 	EndGlobalSection
 EndGlobal

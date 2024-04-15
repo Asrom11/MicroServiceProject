@@ -8,8 +8,8 @@ namespace Infrastucture.Data;
 public class BaseRepository<T>: IStandartStore<T> 
     where T: BaseEntity<Guid>
 {
-    private readonly ApplicationDbContext _applicationDbContext;
-    public BaseRepository(ApplicationDbContext applicationDbContext)
+    private readonly DbContext _applicationDbContext;
+    public BaseRepository(DbContext applicationDbContext)
     {
         _applicationDbContext = applicationDbContext;
     }

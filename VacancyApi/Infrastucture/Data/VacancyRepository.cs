@@ -32,4 +32,44 @@ public class VacancyRepository: IStoreVacancy
             throw new InvalidOperationException("The user is not the owner of the vacancy.");
         }
     }
+
+    public async Task<Guid> GetVacancyIdAsync(Guid id)
+    {
+        var vacancyId = await _applicationDbContext.Vacancies
+            .Where(u => u.Id == id)
+            .Select(u => u.Id)
+            .FirstOrDefaultAsync();
+        return vacancyId;
+    }
+
+    public async Task IncrementApplicationCountAsync(Guid id)
+    {
+        var vacancy = await GetVacancyAsync(id);
+
+        vacancy.ApplicationsCount++;
+
+        await _applicationDbContext.SaveChangesAsync();
+    }
+
+    private async Task<Vacancy> GetVacancyAsync(Guid id)
+    {
+        var vacancy = await _applicationDbContext.Vacancies.
+            FirstOrDefaultAsync(v => v.Id == id);
+
+        if (vacancy is null)
+        {
+            throw new Exception("Vacancy not found");
+        }
+
+        return vacancy;
+    }
+
+    public async Task DicrementApplicationCountAsync(Guid id)
+    {
+        var vacancy = await GetVacancyAsync(id);
+
+        vacancy.ApplicationsCount--;
+
+        await _applicationDbContext.SaveChangesAsync();
+    }
 }

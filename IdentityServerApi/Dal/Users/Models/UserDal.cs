@@ -15,6 +15,8 @@ public record UserDal: BaseEntity<Guid>
     public required string Email { get; set; }
     
     public required string PaswordHash { get; set; }
+    
+    public int ApplicationsCount { get; set; }
 
     public Resume Resume { get; set; }
     public List<UserRole> UserRole { get; set; }

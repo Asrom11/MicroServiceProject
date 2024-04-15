@@ -8,12 +8,12 @@ namespace Services.Services;
 
 public class VacancyService: IVacancyService
 {
-    private readonly IChekUser _chekUser;
+    private readonly ICheckUser _chekUser;
     private readonly IStoreVacancy _storeVacancy;
     private readonly IStandartStore<Vacancy> _standartStore;
     private readonly IProfileConnectionServcie _profileConnectionServcie;
     
-    public VacancyService(IStandartStore<Vacancy> standartStore, IChekUser chekUser, IStoreVacancy storeVacancy, IProfileConnectionServcie profileConnectionServcie)
+    public VacancyService(IStandartStore<Vacancy> standartStore, ICheckUser chekUser, IStoreVacancy storeVacancy, IProfileConnectionServcie profileConnectionServcie)
     {
         _profileConnectionServcie = profileConnectionServcie;
         _standartStore = standartStore;
@@ -28,7 +28,7 @@ public class VacancyService: IVacancyService
 
     public async Task UpdateVacancyAsync(Vacancy post)
     { 
-        await post.UpdateAsync(_standartStore,_storeVacancy,_chekUser);
+        await post.UpdateAsync(_standartStore,_storeVacancy);
     }
 
     public  async Task<List<Vacancy>> GetVacancyListAsync()
@@ -40,7 +40,6 @@ public class VacancyService: IVacancyService
         {
             UserIdList = employerIdList
         });
-        
         var employerNamesDict = employerNameList.ToDictionary(user => user.UserList.UserId, user => user.UserList.Name);
         
         foreach (var vacancy in vacancyList)
@@ -50,5 +49,22 @@ public class VacancyService: IVacancyService
         }
         
         return vacancyList;
+    }
+
+    public async Task<Guid> CheckVacancyExistAsync(Guid vacancyId)
+    {
+        var res = await _storeVacancy.GetVacancyIdAsync(vacancyId);
+
+        return res;
+    }
+
+    public async Task IncrementVacancyAsync(Guid vacancyId)
+    {
+        await _storeVacancy.IncrementApplicationCountAsync(vacancyId);
+    }
+
+    public async Task DicrementVacncyAsync(Guid vacancyId)
+    {
+        await _storeVacancy.DicrementApplicationCountAsync(vacancyId);
     }
 }

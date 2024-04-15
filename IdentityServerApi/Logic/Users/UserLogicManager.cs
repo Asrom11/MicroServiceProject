@@ -143,4 +143,14 @@ public class UserLogicManager: IUserLogicManager
         return filteredUsers;
 
     }
+
+    public async Task IncrementUserResponseAsync(Guid userId)
+    {
+        await _userRepository.IncrementApplicationCountAsync(userId);
+    }
+
+    public async Task DicrementUserRespondeAsync(Guid userID)
+    {
+        await _userRepository.DicrementApplicationCountAsync(userID);
+    }
 }

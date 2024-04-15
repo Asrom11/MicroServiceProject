@@ -1,10 +1,11 @@
-﻿using ProfileConnectionLib.ConnectionServices.DtoModels.CheckUserExists;
+﻿using Domain.Interfaces;
+using ProfileConnectionLib.ConnectionServices.DtoModels.CheckUserExists;
 using ProfileConnectionLib.ConnectionServices.Interfaces;
 using Services.Interfaces;
 
 namespace Infrastucture.Connections;
 
-public class CheckUser: IChekUser
+public class CheckUser: ICheckUser
 {
     private readonly IProfileConnectionServcie  _profileConnectionServcie;
 
@@ -13,7 +14,7 @@ public class CheckUser: IChekUser
         _profileConnectionServcie = profileConnectionServcie;
     }
     
-    public async Task CheckUserExistAsync(Guid userId)
+    public async Task CheckEntityAsync(Guid userId)
     {
         await _profileConnectionServcie.CheckUserExistAsync(new CheckUserExistProfileApiRequest
         {

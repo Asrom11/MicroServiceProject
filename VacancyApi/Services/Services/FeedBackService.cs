@@ -8,11 +8,11 @@ public class FeedBackService: IFeedbackService
 {
 
     private readonly IStoreFeedback _storeFeedback;
-    private readonly IChekUser _chekUser;
+    private readonly ICheckUser _chekUser;
     private readonly IStoreVacancy _storeVacancy;
     private readonly IStandartStore<VacancyFeedback> _standartStore;
     
-    public FeedBackService(IStandartStore<VacancyFeedback> standartStore, IStoreFeedback storeFeedback, IChekUser chekUser, IStoreVacancy storeVacancy)
+    public FeedBackService(IStandartStore<VacancyFeedback> standartStore, IStoreFeedback storeFeedback, ICheckUser chekUser, IStoreVacancy storeVacancy)
     {
         _standartStore = standartStore;
         _storeFeedback = storeFeedback;
