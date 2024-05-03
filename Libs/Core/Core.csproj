@@ -32,6 +32,7 @@
         <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
         <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
         <PackageReference Include="Uuid7" Version="1.7.0" />
+        <PackageReference Include="ZooKeeperNetEx" Version="3.4.12.4" />
     </ItemGroup>
 
 </Project>
